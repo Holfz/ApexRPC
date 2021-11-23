@@ -1,0 +1,29 @@
+{
+  "name": "apexrpc",
+  "version": "1.0.0",
+  "description": "RPC client for Apex Legends. (Steam Required)",
+  "main": "main.js",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "discord-rpc": "^4.0.1",
+    "dotenv": "^10.0.0",
+    "prompts": "^2.4.2",
+    "steam-user": "^4.20.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "nexe main.js --target 12.18.2 -o ApexRPC.exe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Holfz/ApexRPC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Holfz/ApexRPC/issues"
+  },
+  "homepage": "https://github.com/Holfz/ApexRPC#readme"
+}
