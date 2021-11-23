@@ -1,6 +1,8 @@
 # ApexRPC
-![Preview 1](https://i.imgur.com/bHQMds1.png)
-![Preview 2](https://i.imgur.com/r2OD00P.png)
+
+Lobby            |  In-Match
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/32639831/143062717-b1a8debc-d661-4baa-99d7-320571dd7fef.png)  |  ![](https://user-images.githubusercontent.com/32639831/143062754-fe1106da-a5a0-4393-b336-5b77b74f87cc.png)
 
 ## Overview
 
