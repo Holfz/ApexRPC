@@ -30,6 +30,18 @@ ApexRPC is client to convert [Steam Rich Presense](https://partner.steamgames.co
 
 https://user-images.githubusercontent.com/32639831/143059780-29ca2bad-4a13-4b61-9483-290c756a791e.mov
 
+## Important Warning
+
+Don't send your `.env` file to anyone.
+
+We repeat...
+
+DON'T send your `.env` file to anyone, even your parent.
+
+One more time...
+
+DON'T send your `.env` file to anyone, even your parent.
+
 ## Final Note
 
 This project has been swinging around inside my PC since Apex Legends SS10 was released, and I was creating it for fun, only using it for a while. So I released it in case someone wanted this.
