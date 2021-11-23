@@ -12,15 +12,15 @@ ApexRPC is client to convert [Steam Rich Presense](https://partner.steamgames.co
 - Extract the zip file
 - Copy a file named `.env.example` and rename it into `.env`
 - Inside `.env` file,
-          - Replace `YOURSTEAMUSERNAME` with your Steam Username.
-          - Replace `YOURSTEAMPASSWORD` with your Steam Password. 
+   - Replace `YOURSTEAMUSERNAME` with your Steam Username.
+   - Replace `YOURSTEAMPASSWORD` with your Steam Password. 
 - In-case of you're clone this repo
-		  - Make sure [Node.js](https://nodejs.org/en/) is installed
-		  - Open your command-line interface
-          - Do an `npm install`
-          - Run `node main.js`
+   - Make sure [Node.js](https://nodejs.org/en/) is installed
+   - Open your command-line interface
+   - Do an `npm install`
+   - Run `node main.js`
 - In-case of you're download the released executables
-          - Run the executable
+   - Run the executable
 - App will ask for your steam guard if you have one
 - Start playing Apex Legends
 
