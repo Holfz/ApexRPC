@@ -10,7 +10,7 @@ ApexRPC is client to convert [Steam Rich Presense](https://partner.steamgames.co
 
 ## Usage
 
- - Clone this repository or Download latest release from [releases page](https://github.com/Holfz/ApexRPC/releases)
+- Clone this repository or Download latest release from [releases page](https://github.com/Holfz/ApexRPC/releases)
 - Extract the zip file
 - Copy a file named `.env.example` and rename it into `.env`
 - Inside `.env` file,
@@ -49,3 +49,9 @@ This project has been swinging around inside my PC since Apex Legends SS10 was r
 **Competitive, Arena, Ranked Arena is currently partial supported (I only play public: TRIO). Any PR, Contribution is appreciated.**
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
+
+## Legals
+- All images, icons and trademarks belong to their respective owner.
+- This project is not affiliated with EA/Respawn/EAC or any of its employees.
+- Apex Legends is a registered trademark of EA. Game assets, materials and icons belong to Electronic Arts.
+- EA and Respawn do not endorse the content of this project nor are responsible for this project.
