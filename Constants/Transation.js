@@ -3,8 +3,11 @@ module.exports = Object.freeze({
     "#PL_FIRINGRANGE-PARTY": "Shooting Friends in the Firing Range",
     "#RICHPRESENCE_PARTY_LOBBY_N_N": "Chilling in the Lobby...",
     "#RICHPRESENCE_PARTY_LOBBY": "Chilling in the Lobby...",
-    "#PL_TRIO": "TRIO",
-    "#PL_DUO": "DUO",
+    "#PL_TRIO": "TRIOS",
+    "#PL_DUO": "DUOS",
+    "#PL_Ranked_Leagues": "RANKED",
+    "#GAMEMODE_ARENAS": "ARENAS",
+    "#GAMEMODE_ARENAS_RANKED": "RANKED ARENAS",
     "#PL_TRAINING": "In the training",
     "#LOADINGSCREEN": "Loading into the battle",
     "#MAINMENU": "In the Main Menu",
@@ -29,11 +32,12 @@ module.exports = Object.freeze({
     "#mp_rr_olympus_desc": "Olympus",
     "#mp_rr_olympus_mu1": "Olympus",
     "#mp_rr_olympus__mu1_desc": "Olympus",
+    "#mp_rr_tropic_island": "Storm Point",
     "#mp_rr_arena_phase_runner": "Phase Runner",
     "#mp_rr_arena_phase_runner_desc": "Phase Runner",
     "#mp_rr_party_crasher": "Party Crasher",
     "#mp_rr_party_crasher_desc": "Party Crasher",
     "#mp_rr_aqueduct": "Overflow",
     "#mp_rr_aqueduct_desc": "Overflow",
-    "#mp_rr_tropic_island": "Storm Point"
+    "#mp_rr_arena_skygarden": "Encore"
 });
