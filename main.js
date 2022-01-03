@@ -111,22 +111,39 @@ SteamClient.on('user', function(sID, user) {
     } else if (
         status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" || 
         status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
-        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
+        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT" ||
+        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
     ) {
         const gamemode = user.rich_presence.find(data => data.key.toLowerCase() == "gamemode");
         const level = user.rich_presence.find(data => data.key.toLowerCase() == "level");    
-        const squadsleft = user.rich_presence.find(data => data.key.toLowerCase() == "squadsleft");
-        
+
         activity.details = `${
             gamemode && Transation[gamemode.value] ? Transation[gamemode.value] : "Unknown Mode"
         }: ${
             level && Transation[level.value] ? Transation[level.value] : "Unknown Map"
         }`;
 
-        if (playState == 2) {
-            if (squadsleft) { activity.details += ` (${squadsleft.value} Squads Left)`; }
-        } else {
-            activity.details += ` (${playState == 1 ? "Legend Selection" : "Epilogue"})`;
+        if (
+            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" || 
+            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
+            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
+        ) {
+            const squadsleft = user.rich_presence.find(data => data.key.toLowerCase() == "squadsleft");
+    
+            if (playState == 2) {
+                if (squadsleft) { activity.details += ` (${squadsleft.value} Squads Left)`; }
+            } else {
+                activity.details += ` (${playState == 1 ? "Legend Selection" : "Epilogue"})`;
+            }
+        }
+        
+        if (
+            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
+        ) {
+            const friendlyscore = user.rich_presence.find(data => data.key.toLowerCase() == "friendlyscore");
+            const enemyscore = user.rich_presence.find(data => data.key.toLowerCase() == "enemyscore");
+    
+            activity.details += ` (${friendlyscore.value} - ${enemyscore.value})`; 
         }
 
         if (level && Gallery[level.value]) { activity.largeImageKey = Gallery[level.value] }
