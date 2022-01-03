@@ -26,5 +26,6 @@ module.exports = Object.freeze({
     "#mp_rr_party_crasher_desc": "party-crasher",
     "#mp_rr_aqueduct": "overflow",
     "#mp_rr_aqueduct_desc": "overflow",
-    "#mp_rr_tropic_island": "stormpoint"
+    "#mp_rr_tropic_island": "stormpoint",
+    "#mp_rr_arena_skygarden": "encore"
 });
