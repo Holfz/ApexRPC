@@ -8,6 +8,8 @@ module.exports = Object.freeze({
     "#PL_Ranked_Leagues": "RANKED",
     "#GAMEMODE_ARENAS": "ARENAS",
     "#GAMEMODE_ARENAS_RANKED": "RANKED ARENAS",
+    "#GAME_MODE_CONTROL": "CONTROL",
+    "#pl_ranked_leagues": "RANKED LEAGUES"
     "#PL_TRAINING": "In the training",
     "#LOADINGSCREEN": "Loading into the battle",
     "#MAINMENU": "In the Main Menu",
