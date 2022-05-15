@@ -123,6 +123,10 @@ SteamClient.on('user', function(sID, user) {
             level && Transation[level.value] ? Transation[level.value] : "Unknown Map"
         }`;
 
+        if (!level || !Transation[level.value]) {
+            logWarn(`UNKNOWN LEVEL: ${status.value}`, 'main:user:rpc');
+        }
+
         if (
             status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" || 
             status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
