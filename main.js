@@ -12,6 +12,7 @@ const { logInfo, logError, logWarn, logOk } = require('./Helpers/Logger');
 /* Constants */
 const Translation = require('./Constants/Translation');
 const Gallery = require('./Constants/Gallery');
+const Termination = require('./Constants/Termination');
 
 /* Variable */
 const SteamClient = new SteamUser();
@@ -115,16 +116,36 @@ SteamClient.on('user', function(sID, user) {
         status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
     ) {
         const gamemode = user.rich_presence.find(data => data.key.toLowerCase() == "gamemode");
-        const level = user.rich_presence.find(data => data.key.toLowerCase() == "level");    
+        const level = user.rich_presence.find(data => data.key.toLowerCase() == "level");
+
+        // This will self-fixing (more or less) any unknown map on existed map. (Not newly released map) on any mode.
+        // By testing this, I didn't found any performance impacted problem on Ryzen 7 3700X (8 Core Processor)
+        let parsedLevel = [];
+
+        if (level && level.value) {
+            // By split the level value by "_" and looking for any known termination value.
+            for (const e of level.value.split('_')) {
+                if (Termination.indexOf(e) !== -1) {
+                    break;
+                }
+
+                parsedLevel.push(e);
+            }
+
+            // And then re-join together.
+            parsedLevel = parsedLevel.join('_');
+        } else {
+            parsedLevel = null;
+        }
 
         activity.details = `${
             gamemode && Translation[gamemode.value] ? Translation[gamemode.value] : "Unknown Mode"
         }: ${
-            level && Translation[level.value] ? Translation[level.value] : "Unknown Map"
+            parsedLevel && Translation[parsedLevel] ? Translation[parsedLevel] : "Unknown Map"
         }`;
 
-        if (!level || !Translation[level.value]) {
-            logWarn(`UNKNOWN LEVEL: ${status.value}`, 'main:user:rpc');
+        if (!level || !Translation[parsedLevel]) {
+            logWarn(`UNKNOWN LEVEL: ${parsedLevel}`, 'main:user:rpc');
         }
 
         if (
@@ -150,8 +171,8 @@ SteamClient.on('user', function(sID, user) {
             activity.details += ` (${friendlyscore.value} - ${enemyscore.value})`; 
         }
 
-        if (level && Gallery[level.value]) {
-            activity.largeImageKey = Gallery[level.value]
+        if (level && Gallery[parsedLevel]) {
+            activity.largeImageKey = Gallery[parsedLevel]
         }
     } else {
         activity.details = Translation[status.value] ? Translation[status.value] : "UNKNOWN, CONTACT HOLFZ";
