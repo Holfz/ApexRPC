@@ -6,5 +6,7 @@ module.exports = Object.freeze({
     "#mp_rr_party_crasher": "party-crasher",
     "#mp_rr_aqueduct": "overflow",
     "#mp_rr_tropic_island": "stormpoint",
-    "mp_rr_tropic_island": "stormpoint"
+    "mp_rr_tropic_island": "stormpoint",
+    "#mp_rr_arena_composite": "drop-off",
+    "#mp_rr_arena_habitat": "habitat"
 });

@@ -18,5 +18,7 @@ module.exports = Object.freeze({
     "#mp_rr_arena_phase_runner": "Phase Runner",
     "#mp_rr_party_crasher": "Party Crasher",
     "#mp_rr_aqueduct": "Overflow",
-    "#mp_rr_arena_skygarden": "Encore"
+    "#mp_rr_arena_skygarden": "Encore",
+    "#mp_rr_arena_composite": "Drop-Off",
+    "#mp_rr_arena_habitat": "Habitat 4"
 });
