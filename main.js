@@ -20,6 +20,7 @@ const RPC = new DiscordRPC.Client({ transport: 'ipc' });
 let [discordReady, startTimestamp, playState] = [false, null, 0];
 
 /* Main:STEAM */
+logInfo('ApexRPC v1.0.2');
 logInfo('Logging in...', 'main:steam'); 
 SteamClient.logOn({ 
     accountName: process.env.STEAM_USERNAME, 
