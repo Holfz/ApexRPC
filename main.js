@@ -123,13 +123,19 @@ SteamClient.on('user', function(sID, user) {
         let parsedLevel = [];
 
         if (level && level.value) {
-            // By split the level value by "_" and looking for any known termination value.
-            for (const e of level.value.split('_')) {
-                if (Termination.indexOf(e) !== -1) {
-                    break;
-                }
+            // If found the exactly level in Translation. Don't parse (It's maybe a reused or event maps)
+            if (Translation[level.value]) {
+                parsedLevel = level.value;
+            } else {
+                // If not found. Try parsing.
+                // split the level value by "_" and looking for any known termination value.
+                for (const e of level.value.split('_')) {
+                    if (Termination.indexOf(e) !== -1) {
+                        break;
+                    }
 
-                parsedLevel.push(e);
+                    parsedLevel.push(e);
+                }
             }
 
             // And then re-join together.
