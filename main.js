@@ -10,7 +10,7 @@ const prompts = require('prompts');
 const { logInfo, logError, logWarn, logOk } = require('./Helpers/Logger');
 
 /* Constants */
-const Transation = require('./Constants/Transation');
+const Translation = require('./Constants/Translation');
 const Gallery = require('./Constants/Gallery');
 
 /* Variable */
@@ -92,19 +92,19 @@ SteamClient.on('user', function(sID, user) {
 
     const activity = { details: "", state: "", startTimestamp, largeImageKey: "apex-legends", instance: false };
     if (!status && !steam_player_group_size) {
-        activity.details = Transation["#MAINMENU"];
+        activity.details = Translation["#MAINMENU"];
     } else if (!status && steam_player_group_size) {
         const steam_player_group = user.rich_presence.find(data => data.key.toLowerCase() == "steam_player_group");
         if (!steam_player_group) {
-            activity.details = Transation["#MAINMENU"];
+            activity.details = Translation["#MAINMENU"];
         } else {
-            activity.details = Transation["#LOADINGSCREEN"];
+            activity.details = Translation["#LOADINGSCREEN"];
         }
     } else if (status.value == "#PL_FIRINGRANGE") {
         if (steam_player_group_size && steam_player_group_size.value > 1) {
-            activity.details = Transation["#PL_FIRINGRANGE-PARTY"];
+            activity.details = Translation["#PL_FIRINGRANGE-PARTY"];
         } else {
-            activity.details = Transation["#PL_FIRINGRANGE-ALONE"];
+            activity.details = Translation["#PL_FIRINGRANGE-ALONE"];
         }
 
         activity.largeImageKey = "firing-range";
@@ -118,12 +118,12 @@ SteamClient.on('user', function(sID, user) {
         const level = user.rich_presence.find(data => data.key.toLowerCase() == "level");    
 
         activity.details = `${
-            gamemode && Transation[gamemode.value] ? Transation[gamemode.value] : "Unknown Mode"
+            gamemode && Translation[gamemode.value] ? Translation[gamemode.value] : "Unknown Mode"
         }: ${
-            level && Transation[level.value] ? Transation[level.value] : "Unknown Map"
+            level && Translation[level.value] ? Translation[level.value] : "Unknown Map"
         }`;
 
-        if (!level || !Transation[level.value]) {
+        if (!level || !Translation[level.value]) {
             logWarn(`UNKNOWN LEVEL: ${status.value}`, 'main:user:rpc');
         }
 
@@ -150,10 +150,12 @@ SteamClient.on('user', function(sID, user) {
             activity.details += ` (${friendlyscore.value} - ${enemyscore.value})`; 
         }
 
-        if (level && Gallery[level.value]) { activity.largeImageKey = Gallery[level.value] }
+        if (level && Gallery[level.value]) {
+            activity.largeImageKey = Gallery[level.value]
+        }
     } else {
-        activity.details = Transation[status.value] ? Transation[status.value] : "UNKNOWN, CONTACT HOLFZ";
-        if (!Transation[status.value]) {
+        activity.details = Translation[status.value] ? Translation[status.value] : "UNKNOWN, CONTACT HOLFZ";
+        if (!Translation[status.value]) {
             logWarn(`UNKNOWN STATE: ${status.value}`, 'main:user:rpc');
             logWarn(`Report this data to holfz: `);
             console.log(user.rich_presence);
