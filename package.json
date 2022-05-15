@@ -13,7 +13,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "nexe main.js --target 12.18.2 -o ApexRPC.exe"
+    "build": "nexe main.js -r node_modules/ --target 12.18.2 -o ApexRPC.exe"
   },
   "repository": {
     "type": "git",
