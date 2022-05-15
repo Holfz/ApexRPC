@@ -1,6 +1,6 @@
 {
   "name": "apexrpc",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "RPC client for Apex Legends. (Steam Required)",
   "main": "main.js",
   "dependencies": {
@@ -12,7 +12,6 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "nexe main.js -r node_modules/ --target 12.18.2 -o ApexRPC.exe"
   },
   "repository": {
