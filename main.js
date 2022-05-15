@@ -23,7 +23,7 @@ logInfo('Logging in...', 'main:steam');
 SteamClient.logOn({ 
     accountName: process.env.STEAM_USERNAME, 
     password: process.env.STEAM_PASSWORD,
-    machineName: "HOLFZ-IS-HERE@1.0",
+    machineName: `ApexRPC@${require('./package.json').version}`,
     dontRememberMachine: false
 });
 
@@ -128,7 +128,7 @@ SteamClient.on('user', function(sID, user) {
         }
 
         if (
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" || 
+            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" ||
             status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
             status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
         ) {
