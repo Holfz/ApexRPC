@@ -5,9 +5,12 @@ require('dotenv').config();
 const DiscordRPC = require('discord-rpc');
 const SteamUser = require('steam-user');
 const prompts = require('prompts');
+const find = require('find-process');
+const exec = require('child_process').exec;
+const Registry = require('winreg');
 
 /* Helpers */
-const { logInfo, logError, logWarn, logOk } = require('./Helpers/Logger');
+const logger = require('./Helpers/Logger');
 
 /* Constants */
 const Translation = require('./Constants/Translation');
@@ -17,53 +20,82 @@ const Termination = require('./Constants/Termination');
 /* Variable */
 const SteamClient = new SteamUser();
 const RPC = new DiscordRPC.Client({ transport: 'ipc' });
+const appVersion = require('./package.json').version;
 let [discordReady, startTimestamp, playState] = [false, null, 0];
 
 /* Main:STEAM */
-logInfo('ApexRPC v1.0.2');
-logInfo('Logging in...', 'main:steam'); 
-SteamClient.logOn({ 
-    accountName: process.env.STEAM_USERNAME, 
+logger.info(`ApexRPC v${appVersion}`, 'main');
+logger.info('Logging in...', 'main:steam');
+SteamClient.logOn({
+    accountName: process.env.STEAM_USERNAME,
     password: process.env.STEAM_PASSWORD,
-    machineName: `ApexRPC@${require('./package.json').version}`,
+    machineName: `ApexRPC@${appVersion}`,
     dontRememberMachine: false
 });
 
 SteamClient.on('error', function(e) {
     if (e.eresult == 5) {
-        return logError('Failed to login, Wrong password.', 'main:steam');
+        return logger.error('Failed to login, Wrong password.', 'main:steam');
     }
 
-    return logError(`Failed to login, Steam error with code: ${e.eresult}`, 'main:steam');
+    return logger.error(`Failed to login, Steam error with code: ${e.eresult}`, 'main:steam');
 });
 
 SteamClient.on('steamGuard', async function(domain, callback) {
     const response = await prompts({ type: 'text', name: 'code', message: 'Steam Guard: ' });
     if (!response || !response.code) {
         SteamClient.logOff();
-        return logError('No Steam Guard code entered.', 'main:steam');
+        return logger.error('No Steam Guard code entered.', 'main:steam');
     }
 
     callback(response.code);
 });
 
-SteamClient.on('loggedOn', function(details) {
-    logOk(`Logged in with steam vanity url: ${details.vanity_url}, Welcome.`, 'main:steam');
+SteamClient.on('loggedOn', async function(details) {
+    logger.info(`Logged in with steam vanity url: ${details.vanity_url}, Welcome.`, 'main:steam');
     SteamClient.setPersona(SteamUser.EPersonaState.Online);
+
+    if (!['yes', 'y', 'true'].includes(process.env.LAUNCH_APEX_IF_NESSESARY)) {
+        logger.debug(`\`LAUNCH_APEX_IF_NESSESARY\` env is not set.`, 'main:steam');
+        return;
+    }
+
+    const r5apex = await find('name', 'r5apex', true);
+    if (r5apex.length > 0) {
+        logger.debug(`Apex Legends is already running, bailing out.`, 'main:steam');
+        return;
+    }
+
+    const steamReg = new Registry({ hive: Registry.HKCU, key: '\\Software\\Valve\\Steam\\ActiveProcess' });
+    steamReg.values((err,res) => {
+        if (err){
+            logger.debug(`Steam is not installed, or the registry is mismatch, bailing out.`, 'main:steam');
+            return;
+        }
+
+        logger.debug(`Automatically launching Apex Legends due to \`LAUNCH_APEX_IF_NESSESARY\` env is set.`, 'main:steam');
+        exec('start "" steam://run/1172470', (error, stdout, stderr) => {
+            if (error) {
+                return logger.error(`Error while launching Apex Legends: ${error.message}`);
+            }
+
+            logger.info('Launched Apex Legends for you, Have fun!', 'main:steam')
+        });
+    });
 });
 
 SteamClient.on('playingState', function(blocked, playingApp) {
     if (playingApp == 1172470) {
-        logInfo(`Seems you started to playing Apex Legends (AppID: ${playingApp}), Firing up DiscordRPC.`, 'main:steam');
+        logger.info(`Seems you started to playing Apex Legends (AppID: ${playingApp}), Firing up DiscordRPC.`, 'main:steam');
         if (!discordReady) { RPC.login({ clientId: "893911040713191444" }); }
     } else {
-        logInfo(`Seems you stopped to playing Apex Legends (AppID: ${playingApp}), Stop discord RPC.`, 'main:steam');
+        logger.info(`Seems you stopped to playing Apex Legends (AppID: ${playingApp}), Stop discord RPC.`, 'main:steam');
         if (discordReady) { RPC.destroy(); }
     }
 });
 
 SteamClient.on('disconnected', function(eresult, msg) {
-    return logWarn(`Disconnected with code: ${Number(eresult)}`, 'main:steam');
+    return logger.warn(`Disconnected with code: ${Number(eresult)}`, 'main:steam');
 });
 
 SteamClient.on('user', function(sID, user) {
@@ -152,7 +184,7 @@ SteamClient.on('user', function(sID, user) {
         }`;
 
         if (!level || !Translation[parsedLevel]) {
-            logWarn(`UNKNOWN LEVEL: ${parsedLevel}`, 'main:user:rpc');
+            logger.warn(`UNKNOWN LEVEL: ${parsedLevel}`, 'main:user:rpc');
         }
 
         if (
@@ -184,8 +216,8 @@ SteamClient.on('user', function(sID, user) {
     } else {
         activity.details = Translation[status.value] ? Translation[status.value] : "UNKNOWN, CONTACT HOLFZ";
         if (!Translation[status.value]) {
-            logWarn(`UNKNOWN STATE: ${status.value}`, 'main:user:rpc');
-            logWarn(`Report this data to holfz: `);
+            logger.warn(`UNKNOWN STATE: ${status.value}`, 'main:user:rpc');
+            logger.warn(`Report this data to holfz: `);
             console.log(user.rich_presence);
         }
     }
@@ -202,6 +234,6 @@ SteamClient.on('user', function(sID, user) {
 
 /* main:RPC */
 RPC.on('ready', () => {
-    logInfo('Discord RPC is ready.', 'main:RPC');
+    logger.info('Discord RPC is ready.', 'main:RPC');
     discordReady = true;
 });
