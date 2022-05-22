@@ -30,6 +30,14 @@ ApexRPC is a client to convert [Steam Rich Presence](https://partner.steamgames.
 
 https://user-images.githubusercontent.com/32639831/143059780-29ca2bad-4a13-4b61-9483-290c756a791e.mov
 
+### Environment variables (.env)
+| Parameter                | Required | Description                                                                                               |
+|--------------------------|:--------:|-----------------------------------------------------------------------------------------------------------|
+| STEAM_USERNAME           |    ✔     | Your Steam Username                                                                                       |
+| STEAM_PASSWORD           |    ✔     | Your Steam Password                                                                                       |
+| LOG_LEVEL                |    ✕     | Minimum log level to produce. Values are `debug`, `info`, `silly`, `warn` and `error`. Default is `info`. |
+| LAUNCH_APEX_IF_NESSESARY |    ✕     | If Steam is installed. Should ApexRPC launch Apex Legends for you?. Default is `false`.                   |
+
 ## Important Warning
 
 Don't send your `.env` file to anyone.
