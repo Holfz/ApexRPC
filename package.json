@@ -4,13 +4,14 @@
   "description": "RPC client for Apex Legends. (Steam Required)",
   "main": "main.js",
   "dependencies": {
-    "chalk": "^4.1.2",
     "discord-rpc": "^4.0.1",
     "dotenv": "^10.0.0",
+    "find-process": "^1.4.7",
     "prompts": "^2.4.2",
-    "steam-user": "^4.20.2"
+    "steam-user": "^4.20.2",
+    "winreg": "^1.2.4",
+    "winston": "^3.7.2"
   },
-  "devDependencies": {},
   "scripts": {
     "build": "nexe main.js -r node_modules/ --target 12.18.2 -o ApexRPC.exe"
   },
