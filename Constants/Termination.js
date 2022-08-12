@@ -1,5 +1,5 @@
 module.exports = Object.freeze([
-    'mu1', 'mu2', 'mu3',
+    'mu1', 'mu2', 'mu3', 'hu',
 
     'staging',
     'desc',
