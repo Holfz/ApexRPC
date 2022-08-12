@@ -56,6 +56,8 @@ This project has been swinging around inside my PC since Apex Legends SS10 was r
 
 **Competitive, Arena, Ranked Arena is currently partially supported (I only play public: TRIO). Any PR, Contribution is appreciated.**
 
+**EDIT (12 August 2022): Official Discord Presence is now supported by the game itself, But just hidden. This repo will goes to archive state if official one is shown. (I still happy to maintain this while official one is still hidden)**
+
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
 ## Legals
