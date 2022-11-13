@@ -26,7 +26,7 @@ module.exports = Object.freeze({
     "#mp_rr_canyonlands_mu1_night_desc": "Shadow Royale",
     "#mp_rr_desertlands_holiday": "Winter Express",
     "#mp_rr_desertlands_holiday_desc": "Winter Express",
-    "#mp_rr_olympus_mu1_night": "Olympus: AFTER DARK",
+    "#mp_rr_olympus_mu1_night": "After Dark",
 
     // Normal Map
     "#mp_rr_canyonlands": "Kings Canyon",
