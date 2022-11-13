@@ -154,8 +154,10 @@ SteamClient.on('user', function(sID, user) {
         // This will self-fixing (more or less) any unknown map on existed map. (Not newly released map) on any mode.
         // By testing this, I didn't found any performance impacted problem on Ryzen 7 3700X (8 Core Processor)
         let parsedLevel = [];
-
         if (level && level.value) {
+            // Fix for uppercase map like "#MP_RR_DIVIDED_MOON"
+            level.value = level.value.toLowerCase();
+
             // If found the exactly level in Translation. Don't parse (It's maybe a reused or event maps)
             if (Translation[level.value]) {
                 parsedLevel = level.value;
@@ -169,10 +171,10 @@ SteamClient.on('user', function(sID, user) {
 
                     parsedLevel.push(e);
                 }
-            }
 
-            // And then re-join together.
-            parsedLevel = parsedLevel.join('_');
+                // And then re-join together.
+                parsedLevel = parsedLevel.join('_');
+            }
         } else {
             parsedLevel = null;
         }
