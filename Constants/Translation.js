@@ -14,7 +14,8 @@ module.exports = Object.freeze({
     "#GAMEMODE_ARENAS": "ARENAS",
     "#GAMEMODE_ARENAS_RANKED": "RANKED ARENAS",
     "#GAME_MODE_CONTROL": "CONTROL",
-    "#pl_ranked_leagues": "RANKED LEAGUES",
+    "#GAME_MODE_GUNGAME": "GUN GAME",
+    "#PL_RANKED_LEAGUES": "RANKED LEAGUES",
     "#PL_TRAINING": "In the training",
     "#LOADINGSCREEN": "Loading into the battle",
     "#MAINMENU": "In the Main Menu",
@@ -25,12 +26,14 @@ module.exports = Object.freeze({
     "#mp_rr_canyonlands_mu1_night_desc": "Shadow Royale",
     "#mp_rr_desertlands_holiday": "Winter Express",
     "#mp_rr_desertlands_holiday_desc": "Winter Express",
+    "#mp_rr_olympus_mu1_night": "Olympus: AFTER DARK",
 
     // Normal Map
     "#mp_rr_canyonlands": "Kings Canyon",
     "#mp_rr_desertlands": "World Edge",
     "#mp_rr_olympus": "Olympus",
     "#mp_rr_tropic_island": "Storm Point",
+    "#mp_rr_divided_moon": "Broken Moon",
 
     // Arena Map
     "#mp_rr_arena_phase_runner": "Phase Runner",
