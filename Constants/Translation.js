@@ -41,5 +41,10 @@ module.exports = Object.freeze({
     "#mp_rr_aqueduct": "Overflow",
     "#mp_rr_arena_skygarden": "Encore",
     "#mp_rr_arena_composite": "Drop-Off",
-    "#mp_rr_arena_habitat": "Habitat 4"
+    "#mp_rr_arena_habitat": "Habitat 4",
+
+    // Control Map
+    "#control_map_name_barometer": "Barometer",
+    "#control_map_name_lab": "Hammond Labs",
+    "#control_map_name_caustic": "Caustic Treatment"
 });
