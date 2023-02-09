@@ -16,6 +16,7 @@ module.exports = Object.freeze({
     "#GAME_MODE_CONTROL": "CONTROL",
     "#GAME_MODE_GUNGAME": "GUN GAME",
     "#PL_RANKED_LEAGUES": "RANKED LEAGUES",
+    "#PL_DUO_DATE": "DATE NIGHT",
     "#PL_TRAINING": "In the training",
     "#LOADINGSCREEN": "Loading into the battle",
     "#MAINMENU": "In the Main Menu",
