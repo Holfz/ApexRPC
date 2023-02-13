@@ -34,7 +34,7 @@ SteamClient.logOn({
 });
 
 SteamClient.on('error', function(e) {
-    if (e.eresult == 5) {
+    if (e.eresult === 5) {
         return logger.error('Failed to login, Wrong password.', 'main:steam');
     }
 
@@ -98,24 +98,24 @@ SteamClient.on('disconnected', function(eresult, msg) {
     return logger.warn(`Disconnected with code: ${Number(eresult)}`, 'main:steam');
 });
 
-SteamClient.on('user', function(sID, user) {
+SteamClient.on('user', async function(sID, user) {
     if (!discordReady || sID.accountid !== SteamClient.steamID.accountid || !user.rich_presence) { return; }
 
-    const status = user.rich_presence.find(data => data.key.toLowerCase() == "status");
-    const steam_player_group_size = user.rich_presence.find(data => data.key.toLowerCase() == "steam_player_group_size");
+    const status = user.rich_presence.find(data => data.key.toLowerCase() === "status");
+    const steam_player_group_size = user.rich_presence.find(data => data.key.toLowerCase() === "steam_player_group_size");
 
     if (
         status && (
-            status.value == "#PL_FIRINGRANGE" || 
-            status.value == "#PL_TRAINING" ||
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" || 
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
+            status.value === "#PL_FIRINGRANGE" ||
+            status.value === "#PL_TRAINING" ||
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" ||
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
         )
     ) {
-        if (status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT") {
+        if (status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT") {
             playState = 2;
-        } else if (status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT") {
+        } else if (status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT") {
             playState = playState + 1;
         }
 
@@ -124,17 +124,25 @@ SteamClient.on('user', function(sID, user) {
         [startTimestamp, playState] = [null, 0];
     }
 
-    const activity = { details: "", state: "", startTimestamp, largeImageKey: "apex-legends", instance: false };
+    const activity = {
+        details: "",
+        state: "",
+        startTimestamp,
+        largeImageKey: "apex-legends",
+        largeImageText: `ApexRPC v${appVersion}`,
+        instance: false
+    };
+
     if (!status && !steam_player_group_size) {
         activity.details = Translation["#MAINMENU"];
     } else if (!status && steam_player_group_size) {
-        const steam_player_group = user.rich_presence.find(data => data.key.toLowerCase() == "steam_player_group");
+        const steam_player_group = user.rich_presence.find(data => data.key.toLowerCase() === "steam_player_group");
         if (!steam_player_group) {
             activity.details = Translation["#MAINMENU"];
         } else {
             activity.details = Translation["#LOADINGSCREEN"];
         }
-    } else if (status.value == "#PL_FIRINGRANGE") {
+    } else if (status.value === "#PL_FIRINGRANGE") {
         if (steam_player_group_size && steam_player_group_size.value > 1) {
             activity.details = Translation["#PL_FIRINGRANGE-PARTY"];
         } else {
@@ -143,13 +151,13 @@ SteamClient.on('user', function(sID, user) {
 
         activity.largeImageKey = "firing-range";
     } else if (
-        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" || 
-        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
-        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT" ||
-        status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
+        status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" ||
+        status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
+        status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT" ||
+        status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
     ) {
-        const gamemode = user.rich_presence.find(data => data.key.toLowerCase() == "gamemode");
-        const level = user.rich_presence.find(data => data.key.toLowerCase() == "level");
+        const gamemode = user.rich_presence.find(data => data.key.toLowerCase() === "gamemode");
+        const level = user.rich_presence.find(data => data.key.toLowerCase() === "level");
 
         // This will self-fixing (more or less) any unknown map on existed map. (Not newly released map) on any mode.
         // By testing this, I didn't found any performance impacted problem on Ryzen 7 3700X (8 Core Processor)
@@ -190,24 +198,24 @@ SteamClient.on('user', function(sID, user) {
         }
 
         if (
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" ||
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORT" ||
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SHORTPLUS" ||
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_SQUADSLEFT"
         ) {
-            const squadsleft = user.rich_presence.find(data => data.key.toLowerCase() == "squadsleft");
+            const squadsleft = user.rich_presence.find(data => data.key.toLowerCase() === "squadsleft");
     
-            if (playState == 2) {
+            if (playState === 2) {
                 if (squadsleft) { activity.details += ` (${squadsleft.value} Squads Left)`; }
             } else {
-                activity.details += ` (${playState == 1 ? "Legend Selection" : "Epilogue"})`;
+                activity.details += ` (${playState === 1 ? "Legend Selection" : "Epilogue"})`;
             }
         }
         
         if (
-            status.value == "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
+            status.value === "#RICHPRESENCE_PLAYING_MULTIPLAYER_TEAMSCORES2"
         ) {
-            const friendlyscore = user.rich_presence.find(data => data.key.toLowerCase() == "friendlyscore");
-            const enemyscore = user.rich_presence.find(data => data.key.toLowerCase() == "enemyscore");
+            const friendlyscore = user.rich_presence.find(data => data.key.toLowerCase() === "friendlyscore");
+            const enemyscore = user.rich_presence.find(data => data.key.toLowerCase() === "enemyscore");
     
             activity.details += ` (${friendlyscore.value} - ${enemyscore.value})`; 
         }
@@ -231,7 +239,7 @@ SteamClient.on('user', function(sID, user) {
         activity.state = `Not joining any party`;
     }
 
-    RPC.setActivity(activity);
+    await RPC.setActivity(activity);
 });
 
 /* main:RPC */
