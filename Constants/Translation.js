@@ -10,12 +10,13 @@ module.exports = Object.freeze({
     // Game Mode
     "#PL_TRIO": "TRIOS",
     "#PL_DUO": "DUOS",
-    "#PL_Ranked_Leagues": "RANKED",
+    "#PL_Ranked_Leagues": "RANKED LEAGUES",
     "#GAMEMODE_ARENAS": "ARENAS",
     "#GAMEMODE_ARENAS_RANKED": "RANKED ARENAS",
     "#GAME_MODE_CONTROL": "CONTROL",
     "#GAME_MODE_GUNGAME": "GUN GAME",
     "#PL_RANKED_LEAGUES": "RANKED LEAGUES",
+    "#TDM_NAME": "TEAM DEATHMATCH",
     "#PL_DUO_DATE": "DATE NIGHT",
     "#PL_TRAINING": "In the training",
     "#LOADINGSCREEN": "Loading into the battle",
@@ -47,5 +48,8 @@ module.exports = Object.freeze({
     // Control Map
     "#control_map_name_barometer": "Barometer",
     "#control_map_name_lab": "Hammond Labs",
-    "#control_map_name_caustic": "Caustic Treatment"
+    "#control_map_name_caustic": "Caustic Treatment",
+
+    // Free DM
+    "#freedm_map_name_skulltown": "Skull Town"
 });
