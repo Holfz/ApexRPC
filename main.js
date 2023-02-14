@@ -103,7 +103,6 @@ SteamClient.on('user', async function(sID, user) {
 
     const status = user.rich_presence.find(data => data.key.toLowerCase() === "status");
     const steam_player_group_size = user.rich_presence.find(data => data.key.toLowerCase() === "steam_player_group_size");
-
     if (
         status && (
             status.value === "#PL_FIRINGRANGE" ||
@@ -206,7 +205,7 @@ SteamClient.on('user', async function(sID, user) {
     
             if (playState === 2) {
                 if (squadsleft) { activity.details += ` (${squadsleft.value} Squads Left)`; }
-            } else {
+            } else if (gamemode.value !== "#TDM_NAME") {
                 activity.details += ` (${playState === 1 ? "Legend Selection" : "Epilogue"})`;
             }
         }
