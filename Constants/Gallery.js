@@ -29,4 +29,7 @@ module.exports = Object.freeze({
     "#control_map_name_lab": "hammond-labs",
     "#control_map_name_barometer": "barometer",
     "#control_map_name_caustic": "caustic-treatment",
+
+    // Free DM
+    "#freedm_map_name_skulltown": "skull-town"
 });
