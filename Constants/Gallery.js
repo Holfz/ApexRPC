@@ -24,12 +24,18 @@ module.exports = Object.freeze({
     "#mp_rr_arena_skygarden": "encore",
     "#mp_rr_arena_composite": "drop-off",
     "#mp_rr_arena_habitat": "habitat",
+    "#mp_rr_freedm_map_name_the_core": "https://files.radnotred.dev/u/the-core.png",
 
     // Control Map
     "#control_map_name_lab": "hammond-labs",
     "#control_map_name_barometer": "barometer",
     "#control_map_name_caustic": "caustic-treatment",
+    "#control_map_name_production": "https://files.radnotred.dev/u/production-yard.png",
 
     // Free DM
-    "#freedm_map_name_skulltown": "skull-town"
+    "#freedm_map_name_skulltown": "skull-town",
+    "#freedm_map_name_estates": "https://files.radnotred.dev/u/estates.jpg",
+    "#freedm_map_name_dome": "https://files.radnotred.dev/u/phase-runner.png",
+    "#freedm_map_name_wattson": "https://files.radnotred.dev/u/wattson-pylon.png",
+    "#freedm_map_name_amps": "https://files.radnotred.dev/u/zeus-station.jpg",
 });
