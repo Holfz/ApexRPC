@@ -1,6 +1,6 @@
 {
   "name": "apexrpc",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "RPC client for Apex Legends. (Steam Required)",
   "main": "main.js",
   "dependencies": {
