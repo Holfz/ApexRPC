@@ -51,6 +51,7 @@ module.exports = Object.freeze({
     "#control_map_name_lab": "Hammond Labs",
     "#control_map_name_caustic": "Caustic Treatment",
     "#control_map_name_production": "Production Yard",
+    "#control_map_name_lava_siphon": "Lava Siphon",
 
     // Free DM
     "#freedm_map_name_skulltown": "Skull Town",
@@ -58,4 +59,5 @@ module.exports = Object.freeze({
     "#freedm_map_name_dome": "Phase Runner",
     "#freedm_map_name_wattson": "Wattson's Pylon",
     "#freedm_map_name_amps": "ZEUS Station",
+    "#freedm_map_name_fragment": "Fragment"
 });

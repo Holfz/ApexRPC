@@ -25,12 +25,14 @@ module.exports = Object.freeze({
     "#mp_rr_arena_composite": "drop-off",
     "#mp_rr_arena_habitat": "habitat",
     "#mp_rr_freedm_map_name_the_core": "the-core",
-
+    
     // Control Map
     "#control_map_name_lab": "hammond-labs",
     "#control_map_name_barometer": "barometer",
     "#control_map_name_caustic": "caustic-treatment",
     "#control_map_name_production": "production",
+    "#control_map_name_lava_siphon": "lava siphon",
+    
 
     // Free DM
     "#freedm_map_name_skulltown": "skull-town",
@@ -38,4 +40,5 @@ module.exports = Object.freeze({
     "#freedm_map_name_dome": "dome",
     "#freedm_map_name_wattson": "wattsons-pylon",
     "#freedm_map_name_amps": "amps",
+    "#freedm_map_name_fragment": "fragment"
 });
