@@ -40,4 +40,5 @@ module.exports = Object.freeze({
     "#freedm_map_name_dome": "dome",
     "#freedm_map_name_wattson": "wattsons-pylon",
     "#freedm_map_name_amps": "amps",
+    "#freedm_map_name_fragment": "fragment"
 });
